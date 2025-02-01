@@ -1,16 +1,18 @@
 "use client";
 
 import { Loader2Icon, SearchIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 export default function SearchBar() {
+  const searchParams = useSearchParams();
+  const defaultQuery = searchParams.get("query") || "";
   const inputRef = useRef<HTMLInputElement>(null);
   const [isSearching, startTransition] = useTransition();
   const router = useRouter();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(defaultQuery);
 
   const search = () => {
     startTransition(() => {
