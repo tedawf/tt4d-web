@@ -1,11 +1,11 @@
-import LotteryResultSkeleton from "@/components/LotteryResultSkeleton";
+import LotteryCardSkeleton from "@/components/LotteryCardSkeleton";
 
 export default function Loading() {
   return (
-    <ul className="divide-y divide-muted rounded-b-md bg-background shadow-md">
+    <ul className="mt-8">
       {[1, 2, 3].map((i) => (
-        <li key={i} className="animate-pulse">
-          <LotteryResultSkeleton />
+        <li key={i} className="animate-pulse mt-4">
+          <LotteryCardSkeleton />
         </li>
       ))}
     </ul>

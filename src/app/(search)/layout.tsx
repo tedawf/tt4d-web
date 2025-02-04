@@ -1,12 +1,12 @@
-import { Icons } from "@/components/Icons";
 import SearchBar from "@/components/SearchBar";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { DicesIcon } from "lucide-react";
 
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="relative isolate min-h-screen overflow-hidden border-b-8 border-red-500 bg-background">
+    <div className="relative isolate min-h-screen overflow-hidden border-b-8 border-red-500 bg-muted">
       {/* bg pattern */}
       <svg
         className="absolute inset-0 -z-10 h-full w-full stroke-muted-foreground [mask-image:radial-gradient(90%_80%_at_bottom,white,transparent)]"
@@ -34,7 +34,7 @@ export default function Layout({
 
       <div className="mx-auto max-w-7xl gap-16 px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
         <div className="flex h-full w-full flex-col items-center gap-4">
-          <Icons.Sparkles className="h-16 w-16" />
+          <DicesIcon className="h-16 w-16" />
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
             TotoSearch
