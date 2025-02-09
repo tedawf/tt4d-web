@@ -32,7 +32,7 @@ export default function Layout({
         />
       </svg>
 
-      <div className="mx-auto max-w-7xl gap-16 px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-6xl gap-16 px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-24">
         <div className="flex h-full w-full flex-col items-center gap-4">
           <DicesIcon className="h-16 w-16" />
 
@@ -45,10 +45,10 @@ export default function Layout({
             clean design, real-time search and data visualization.
           </p>
 
-          <div className="mx-auto mt-16 flex w-full max-w-2xl flex-col">
+          <main className="mx-auto max-w-6xl p-6 space-y-8">
             <SearchBar />
             {children}
-          </div>
+          </main>
 
           <ThemeToggle />
         </div>

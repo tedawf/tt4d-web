@@ -1,30 +1,7 @@
-import LotteryCard from "@/components/LotteryCard";
+import { LotterySummaryCard } from "@/components/LotterySummaryCard";
+import { DrawResult } from "@/types/draw";
 import { XIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-
-const SAMPLE_DATA = [
-  {
-    drawDate: new Date("2024-01-29"),
-    drawNumber: "1234",
-    winningNumbers: [1, 14, 24, 36, 42, 49],
-    additionalNumber: 7,
-    jackpot: "1,000,000",
-  },
-  {
-    drawDate: new Date("2024-01-28"),
-    drawNumber: "1233",
-    winningNumbers: [2, 15, 25, 37, 43, 48],
-    additionalNumber: 8,
-    jackpot: "2,000,000",
-  },
-  {
-    drawDate: new Date("2024-01-27"),
-    drawNumber: "1232",
-    winningNumbers: [3, 16, 26, 38, 44, 47],
-    additionalNumber: 9,
-    jackpot: "1,500,000",
-  },
-];
 
 interface PageProps {
   searchParams: {
@@ -40,13 +17,23 @@ export default async function Page({ searchParams }: PageProps) {
     redirect("/");
   }
 
-  async function getData() {
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Artificial delay
-    return SAMPLE_DATA;
-  }
+  const fetchDraws = async () => {
+    const response = await fetch("http://localhost:8000/draws");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return await response.json();
+  };
 
   // Fetch results
-  const results = await getData();
+  let results: DrawResult[];
+  try {
+    results = await fetchDraws();
+    console.log(results);
+  } catch (err) {
+    console.error(err);
+    return <div>Failed to fetch draws</div>;
+  }
 
   if (results.length === 0) {
     return (
@@ -64,18 +51,10 @@ export default async function Page({ searchParams }: PageProps) {
   }
 
   return (
-    <ul className="mt-8">
+    <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {results.map((result) => (
-        <li key={result.drawNumber} className="mt-4">
-          <LotteryCard
-            drawDate={result.drawDate.toLocaleDateString()}
-            drawNumber={result.drawNumber}
-            winningNumbers={result.winningNumbers}
-            additionalNumber={result.additionalNumber}
-            jackpot={result.jackpot}
-          />
-        </li>
+        <LotterySummaryCard key={result.drawNumber} drawResult={result} />
       ))}
-    </ul>
+    </section>
   );
 }
