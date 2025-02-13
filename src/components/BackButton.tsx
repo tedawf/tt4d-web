@@ -10,7 +10,7 @@ export default function BackButton() {
   return (
     <Button
       onClick={() => router.back()}
-      className="flex items-center gap-2 pb-2 text-sm"
+      className="flex items-center gap-2 pb-2 text-sm mb-4"
       variant="outline"
     >
       <ChevronLeftIcon className="h-4 w-4" />

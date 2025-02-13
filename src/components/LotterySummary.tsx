@@ -1,15 +1,17 @@
-import { DrawResult } from "@/types/draw";
+import { cn } from "@/lib/utils";
+import { DrawResult } from "@/types/toto";
 import { CalendarIcon, ChevronRightIcon, TrophyIcon } from "lucide-react";
+import Link from "next/link";
 import { LotteryNumber } from "./LotteryNumber";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 
 interface Props {
   drawResult: DrawResult;
 }
 
-export const LotterySummaryCard = ({ drawResult }: Props) => {
+export const LotterySummary = ({ drawResult }: Props) => {
   const { drawDate, drawNumber, winningNumbers, additionalNumber, jackpot } =
     drawResult;
 
@@ -45,17 +47,23 @@ export const LotterySummaryCard = ({ drawResult }: Props) => {
             <Badge variant="outline">1 winner</Badge>
           </div>
 
-          <div className="text-2xl font-bold">${jackpot.toLocaleString()}</div>
+          <div className="text-2xl font-semibold">${jackpot.toLocaleString()}</div>
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="flex w-full items-center justify-between">
-          <span className="font-medium">View more</span>
+        <Link
+          href={`/draws/${drawNumber}`}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "group flex w-full items-center justify-between",
+          )}
+        >
+          <span className="text-md font-medium">View more</span>
           <ChevronRightIcon
             size={16}
-            className="transform transition-transform duration-300 group-hover:translate-x-4"
+            className="transform transition-transform duration-300 group-hover:translate-x-1"
           />
-        </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

@@ -1,41 +1,10 @@
 import BackButton from "@/components/BackButton";
-import Jackpot from "@/components/Jackpot";
-import WinningLocations from "@/components/WinningLocations";
-import DrawInfo from "@/components/DrawInfo";
-import WinningShares from "@/components/WinningShares";
+import { GroupDetails } from "@/components/GroupDetails";
+import { LotteryNumber } from "@/components/LotteryNumber";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DrawDetails } from "@/types/toto";
+import { DollarSignIcon, UsersIcon } from "lucide-react";
 import { notFound } from "next/navigation";
-
-const SAMPLE_DATA = {
-  drawDate: new Date("2024-01-29"),
-  drawNumber: 4043,
-  winningNumbers: [3, 7, 11, 13, 34, 35],
-  additionalNumber: 17,
-  groupOnePrize: 6088704,
-  winningShares: [
-    { group: 1, amount: 3044352, shares: 2 },
-    { group: 2, amount: 91930, shares: 7 },
-    { group: 3, amount: 1564, shares: 283 },
-    { group: 4, amount: 263, shares: 918 },
-    { group: 5, amount: 50, shares: 15475 },
-    { group: 6, amount: 25, shares: 23902 },
-    { group: 7, amount: 10, shares: 274774 },
-  ],
-  winningLocations: {
-    groupOne: [
-      "Singapore Pools Account Betting Service - - ( 1 QuickPick System 7 Entry )",
-      "Singapore Pools Yishun N1 Branch - Block 101 Yishun Avenue 5 #01-37 ( 1 Ordinary Entry )",
-    ],
-    groupTwo: [
-      "Singapore Pools Account Betting Service - - ( 1 QuickPick System 7 Entry )",
-      "Singapore Pools Account Betting Service - - ( 1 QuickPick System 7 Entry )",
-      "Singapore Pools Account Betting Service - - ( 1 QuickPick Ordinary Entry )",
-      "Tampines Trading - 828 - Block 828 Tampines Street 81 #01-234 ( 1 QuickPick Ordinary Entry )",
-      "Prime Punggol Field - Block 108 Punggol Field #01-02 ( 1 System 8 Entry )",
-      "Singapore Pools Account Betting Service - - ( 1 System 8 Entry )",
-      "Ng Teo Guan Self Service - Block 301 Ubi Avenue 1 #01-241 ( 1 System 7 Entry )",
-    ],
-  },
-};
 
 interface PageProps {
   params: {
@@ -48,29 +17,114 @@ export default async function Page({ params }: PageProps) {
 
   if (!drawNumber) return notFound();
 
-  async function getData() {
-    await new Promise((resolve) => setTimeout(resolve, 1)); // Artificial delay
-    return SAMPLE_DATA;
+  async function fetchDrawResult() {
+    const response = await fetch("http://localhost:8000/draws/" + drawNumber);
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return await response.json();
   }
 
-  const result = await getData();
+  const result = (await fetchDrawResult()) as DrawDetails;
 
   if (!result) return notFound();
 
+  const { drawResult, winningShares, winningLocations } = result;
+
   return (
-    <main className="mt-4 flex flex-col gap-4">
-      <div className="flex">
-        <BackButton />
-      </div>
-      <DrawInfo
-      drawNumber={result.drawNumber}
-      drawDate={result.drawDate}
-        winningNumbers={result.winningNumbers}
-        additionalNumber={result.additionalNumber}
-      />
-      <Jackpot prize={result.groupOnePrize}/>
-      <WinningShares winningShares={result.winningShares} />
-      <WinningLocations winningLocations={result.winningLocations} />
-    </main>
+    <article className="min-h-screen px-4 py-8">
+      <Card className="mx-auto max-w-4xl">
+        <CardHeader>
+          <BackButton />
+
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Draw Number
+              </CardTitle>
+              <p className="text-2xl font-semibold">#{drawResult.drawNumber}</p>
+            </div>
+            <div>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Draw Date
+              </CardTitle>
+              <time
+                dateTime={new Date(drawResult.drawDate).toDateString()}
+                className="text-2xl font-semibold"
+              >
+                {new Date(drawResult.drawDate).toLocaleDateString()}
+              </time>
+            </div>
+          </div>
+        </CardHeader>
+
+        <CardContent className="space-y-8">
+          <section>
+            <h3 className="mb-4 text-lg font-semibold">Winning Numbers</h3>
+            <div className="mb-4 flex flex-wrap justify-center gap-4">
+              {drawResult.winningNumbers.map((num, i) => (
+                <LotteryNumber key={i} digit={num} size="large" />
+              ))}
+            </div>
+            <div className="flex justify-center">
+              <LotteryNumber
+                digit={drawResult.additionalNumber}
+                isAdditional
+                size="large"
+              />
+            </div>
+          </section>
+
+          <section className="grid grid-cols-2 gap-4">
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center p-6">
+                <UsersIcon size={32} className="mb-2" />
+                <p className="text-sm text-muted-foreground">Total Winners</p>
+                <p className="text-2xl font-semibold">100000</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center p-6">
+                <DollarSignIcon size={32} className="mb-2" />
+                <p className="text-sm text-muted-foreground">Prize Pool</p>
+                <p className="text-2xl font-semibold">$100000</p>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section>
+            <h3 className="mb-4 text-lg font-semibold">Prize Groups</h3>
+            <div className="space-y-4">
+              <GroupDetails
+                group={1}
+                amount={winningShares[0].shareAmount}
+                winners={winningShares[0].winnerCount}
+                locations={winningLocations.filter(
+                  (loc) => loc.groupNumber === 1,
+                )}
+              />
+              <GroupDetails
+                group={2}
+                amount={winningShares[1].shareAmount}
+                winners={winningShares[1].winnerCount}
+                locations={winningLocations.filter(
+                  (loc) => loc.groupNumber === 2,
+                )}
+              />
+              <div className="grid grid-cols-2 gap-4">
+                {result.winningShares.slice(2).map((group) => (
+                  <GroupDetails
+                    key={group.groupNumber}
+                    group={group.groupNumber}
+                    amount={group.shareAmount}
+                    winners={group.winnerCount}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        </CardContent>
+      </Card>
+    </article>
   );
 }

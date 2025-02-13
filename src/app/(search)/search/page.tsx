@@ -1,5 +1,5 @@
-import { LotterySummaryCard } from "@/components/LotterySummaryCard";
-import { DrawResult } from "@/types/draw";
+import { LotterySummary } from "@/components/LotterySummary";
+import { DrawResult } from "@/types/toto";
 import { XIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
@@ -53,7 +53,7 @@ export default async function Page({ searchParams }: PageProps) {
   return (
     <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       {results.map((result) => (
-        <LotterySummaryCard key={result.drawNumber} drawResult={result} />
+        <LotterySummary key={result.drawNumber} drawResult={result} />
       ))}
     </section>
   );

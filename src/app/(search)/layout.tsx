@@ -36,7 +36,7 @@ export default function Layout({
         <div className="flex h-full w-full flex-col items-center gap-4">
           <DicesIcon className="h-16 w-16" />
 
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">
             TotoSearch
           </h1>
 

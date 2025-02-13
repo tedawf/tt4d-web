@@ -12,16 +12,14 @@ export const LotteryNumber = ({
   size = "default",
 }: Props) => {
   return (
-    <div
+    <p
       className={cn(
-        "flex items-center justify-center rounded-full font-bold",
+        "flex items-center justify-center rounded-full font-semibold",
         size === "large" ? "h-16 w-16 text-2xl" : "h-12 w-12 text-lg",
-        isAdditional
-          ? "bg-gradient-to-br from-blue-400 to-blue-500 dark:from-blue-600 dark:to-blue-700 text-background"
-          : "border-2",
+        isAdditional ? "bg-foreground text-background" : "border-2",
       )}
     >
       {digit}
-    </div>
+    </p>
   );
 };
