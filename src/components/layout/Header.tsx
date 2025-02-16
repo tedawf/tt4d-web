@@ -23,7 +23,7 @@ export const Header = () => {
 
           {/* Search */}
           <div className="relative hidden md:flex">
-            <div className="flex h-9 items-center rounded-md border bg-muted px-3 text-sm ring-offset-background">
+            <div className="flex h-9 items-center rounded-md bg-muted px-3 text-sm ring-offset-background">
               <SearchIcon className="h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
@@ -45,7 +45,7 @@ export const Header = () => {
         <NavigationMenu className="ml-auto">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/results" legacyBehavior passHref>
+              <Link href="/draws" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Results
                 </NavigationMenuLink>

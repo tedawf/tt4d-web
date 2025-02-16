@@ -1,0 +1,61 @@
+import { LotterySummary } from "@/components/results/LotterySummary";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { DrawResult } from "@/types/toto";
+import { SearchIcon } from "lucide-react";
+
+export default async function Page() {
+  const fetchDraws = async () => {
+    const response = await fetch("http://localhost:8000/draws");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return await response.json();
+  };
+
+  // Fetch results
+  let results: DrawResult[];
+  try {
+    results = await fetchDraws();
+  } catch (err) {
+    console.error(err);
+    return <div>Failed to fetch draws</div>;
+  }
+
+  return (
+    <main className="mx-auto flex max-w-3xl flex-col items-center">
+      <div className="w-full px-6 py-8">
+        <section className="flex flex-col mb-4">
+          <div className="flex justify-between mb-2">
+            <h1 className="text-2xl font-medium">Results</h1>
+            <div className="flex items-baseline gap-2">
+              <span className="text-muted-foreground">
+                {results.length} results
+              </span>
+              <Button variant="link" size="sm">Reset Filter</Button>
+            </div>
+          </div>
+
+          <div className="flex h-9 items-center rounded-md bg-muted px-3 ring-offset-background">
+            <SearchIcon className="h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Filter results"
+              className="w-64 border-none bg-transparent p-2 focus-visible:ring-0 focus-visible:ring-offset-0"
+            />
+          </div>
+        </section>
+
+        <section>
+          {results.map((result, index) => (
+            <div key={result.drawNumber}>
+              <LotterySummary drawResult={result} />
+              {index < results.length - 1 && <Separator className="my-4" />}
+            </div>
+          ))}
+        </section>
+      </div>
+    </main>
+  );
+}

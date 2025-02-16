@@ -21,7 +21,7 @@ export const Hero = () => {
             </Link>
           </Button>
           <Button variant="outline" size="lg">
-            <Link href="/results">View Results</Link>
+            <Link href="/draws">View Results</Link>
           </Button>
         </div>
       </div>
