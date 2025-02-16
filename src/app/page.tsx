@@ -1,8 +1,8 @@
-import { Hero } from "@/components/Hero";
+import { Hero } from "@/components/home/Hero";
 
 export default function Home() {
   return (
-    <main className="container py-6">
+    <main className="flex flex-col justify-center">
       <Hero />
     </main>
   );

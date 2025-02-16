@@ -1,14 +1,14 @@
 import { DicesIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
+} from "../ui/navigation-menu";
 
 export const Header = () => {
   return (
@@ -17,8 +17,8 @@ export const Header = () => {
         <div className="flex items-center gap-6">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <DicesIcon className="h-6 w-6" />
-            <span className="font-medium">HuatNumber</span>
+            <DicesIcon />
+            <span className="font-semibold">HuatNumber</span>
           </Link>
 
           {/* Search */}
