@@ -10,12 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import { Button } from "../ui/button";
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "../ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
 
 interface Props {
@@ -38,10 +33,10 @@ export const DrawHeader = ({
       <CardHeader className="px-0">
         <CardTitle className="flex items-center gap-4 text-muted-foreground">
           <Breadcrumb>
-            <BreadcrumbList className="text-2xl font-medium">
+            <BreadcrumbList className="text-3xl font-medium">
               <BreadcrumbItem>
                 <BreadcrumbLink href="/">
-                  <Home size={24} strokeWidth={2} aria-hidden="true" />
+                  <Home size={28} strokeWidth={2.5} aria-hidden="true" />
                   <span className="sr-only">Home</span>
                 </BreadcrumbLink>
               </BreadcrumbItem>
@@ -59,18 +54,21 @@ export const DrawHeader = ({
         </CardTitle>
       </CardHeader>
 
-      <CardFooter className="flex items-center gap-2 p-0 text-sm text-muted-foreground">
-        <span className="flex gap-1">
-          Drawn
-          <time dateTime={new Date(drawDate).toDateString()}>
-            {new Date(drawDate).toDateString()}
-          </time>
-        </span>
-        <Separator orientation="vertical" className="h-5" />
-        <span>{totalWinners.toLocaleString()} total winners</span>
-        <Separator orientation="vertical" className="h-5" />
-        <span>${totalPrize.toLocaleString()} total prize</span>
-        <Separator orientation="vertical" className="h-5" />
+      <CardFooter className="flex flex-col sm:flex-row items-center gap-2 p-0 text-sm text-muted-foreground">
+        <div className="flex gap-2">
+          <span className="flex gap-1">
+            Drawn
+            <time dateTime={new Date(drawDate).toDateString()}>
+              {new Date(drawDate).toDateString()}
+            </time>
+          </span>
+          <Separator orientation="vertical" className="h-5" />
+          <span>{totalWinners.toLocaleString()} total winners</span>
+          <Separator orientation="vertical" className="h-5" />
+          <span>${totalPrize.toLocaleString()} total prize</span>
+        </div>
+        <Separator orientation="vertical" className="hidden h-5 sm:block" />
+        <Separator orientation="horizontal" className="sm:hidden" />
         <Button
           variant="link"
           asChild

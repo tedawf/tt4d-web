@@ -1,7 +1,7 @@
-import { DicesIcon, SearchIcon } from "lucide-react";
+import { DicesIcon } from "lucide-react";
 import Link from "next/link";
+import { SearchForm } from "../draws/SearchForm";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -23,21 +23,7 @@ export const Header = () => {
 
           {/* Search */}
           <div className="relative hidden md:flex">
-            <div className="flex h-9 items-center rounded-md bg-muted px-3 text-sm ring-offset-background">
-              <SearchIcon className="h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search results, numbers..."
-                className="w-64 border-none bg-transparent p-2 focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-              <div className="ml-2 flex items-center border-l pl-2">
-                <kbd className="pointer-events-none flex h-5 select-none items-center rounded border bg-background px-1.5">
-                  <span className="font-mono text-xs font-medium text-muted-foreground">
-                    /
-                  </span>
-                </kbd>
-              </div>
-            </div>
+            <SearchForm initialValue="" showKbd />
           </div>
         </div>
 
@@ -52,7 +38,7 @@ export const Header = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/statistics" legacyBehavior passHref>
+              <Link href="/stats" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Statistics
                 </NavigationMenuLink>

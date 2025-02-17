@@ -3,9 +3,8 @@ import { LocationGroup } from "@/components/draws/LocationGroup";
 import { PrizeGroup } from "@/components/draws/PrizeGroup";
 import { WinningNumbers } from "@/components/draws/WinningNumbers";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent } from "@/components/ui/card";
 import { DrawDetails } from "@/types/toto";
-import { DollarSignIcon, TriangleAlertIcon, UsersIcon } from "lucide-react";
+import { TriangleAlertIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -42,7 +41,7 @@ export default async function Page({ params }: PageProps) {
   } = drawResult;
 
   return (
-    <main className="mx-auto flex max-w-3xl flex-col items-center gap-4 p-6">
+    <main className="mx-auto flex max-w-3xl flex-col items-center gap-8 p-6">
       <DrawHeader
         drawNumber={drawNo}
         drawDate={drawDate}
@@ -75,42 +74,13 @@ export default async function Page({ params }: PageProps) {
           </Alert>
         ))}
 
-      <PrizeGroup winningShares={winningShares} />
+      {winningShares.length > 0 && <PrizeGroup winningShares={winningShares} /> }
 
-      <LocationGroup
+      {winningLocations.length > 0 && <LocationGroup
         snowballInfo={snowballInfo}
         winningShares={winningShares}
         winningLocations={winningLocations}
-      />
-
-      <CardContent className="space-y-8">
-        <section className="grid grid-cols-2 gap-4">
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center p-6">
-              <UsersIcon size={32} className="mb-2" />
-              <span className="text-sm text-muted-foreground">
-                Total Winners
-              </span>
-              <span className="text-2xl font-semibold">
-                {drawResult.totalWinners.toLocaleString()}
-              </span>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center p-6">
-              <DollarSignIcon size={32} className="mb-2" />
-              <span className="text-sm text-muted-foreground">Prize Pool</span>
-              <span className="text-2xl font-semibold">
-                ${drawResult.totalPrize.toLocaleString()}
-              </span>
-            </CardContent>
-          </Card>
-        </section>
-
-        <section>
-          <h3 className="mb-4 text-lg font-semibold">Prize Groups</h3>
-        </section>
-      </CardContent>
+      />}
     </main>
   );
 }
