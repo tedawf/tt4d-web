@@ -1,5 +1,4 @@
-import { LotterySummary } from "@/components/results/LotterySummary";
-import { Button } from "@/components/ui/button";
+import { DrawSummary } from "@/components/draws/DrawSummary";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { DrawResult } from "@/types/toto";
@@ -25,18 +24,13 @@ export default async function Page() {
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col items-center">
-      <div className="w-full px-6 py-8">
+      <div className="w-full p-6">
         <section className="mb-4 flex flex-col">
           <div className="mb-4 flex items-baseline justify-between">
-            <div className="flex items-baseline gap-4">
-              <h1 className="text-3xl font-medium">Results</h1>
-              <span className="text-muted-foreground">
-                {results.length} results
-              </span>
-            </div>
-            <Button variant="link" size="sm">
-              Reset Filter
-            </Button>
+            <h1 className="text-3xl font-medium">Draws</h1>
+            <span className="text-muted-foreground">
+              {results.length} results
+            </span>
           </div>
 
           <div className="flex h-10 items-center rounded-md bg-muted px-3 ring-offset-background">
@@ -52,7 +46,7 @@ export default async function Page() {
         <section className="flex flex-col">
           {results.map((result, index) => (
             <div key={result.drawNumber}>
-              <LotterySummary drawResult={result} />
+              <DrawSummary drawResult={result} />
               {index < results.length - 1 && <Separator className="my-4" />}
             </div>
           ))}

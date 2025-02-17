@@ -8,13 +8,13 @@ export interface DrawResult {
   totalPrize: number;
 }
 
-interface GroupDetail {
+export interface WinningShare {
   groupNumber: number;
   shareAmount: number;
   winnerCount: number;
 }
 
-interface SnowballInfo {
+export interface SnowballInfo {
   groupNumber: number;
   amount: number;
 }

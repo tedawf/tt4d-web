@@ -16,7 +16,7 @@ export const LocationDetails = ({ locations }: Props) => (
     <AccordionItem value="locations" className="border-0">
       <AccordionTrigger className="py-0 hover:no-underline">
         <span className="text-base font-semibold">
-          Winning Locations ({locations.length})
+          Winning Locations
         </span>
       </AccordionTrigger>
       <AccordionContent className="space-y-3 pt-4">

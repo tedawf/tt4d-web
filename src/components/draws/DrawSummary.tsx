@@ -1,7 +1,7 @@
 import { DrawResult } from "@/types/toto";
 import { CalendarIcon, ExternalLinkIcon, MedalIcon } from "lucide-react";
 import Link from "next/link";
-import { LotteryNumber } from "../LotteryNumber";
+import { LotteryNumber } from "./LotteryNumber";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
@@ -18,7 +18,7 @@ interface Props {
   drawResult: DrawResult;
 }
 
-export const LotterySummary = ({ drawResult }: Props) => {
+export const DrawSummary = ({ drawResult }: Props) => {
   const {
     drawDate,
     drawNumber,
@@ -74,23 +74,23 @@ export const LotterySummary = ({ drawResult }: Props) => {
         <Button
           variant="link"
           asChild
-          className="text-muted-foreground hover:text-primary"
+          className="text-muted-foreground hover:text-primary px-0"
         >
           <Link
             href={
               "https://www.singaporepools.com.sg/en/product/sr/Pages/toto_results.aspx?sppl=" +
               encodedDrawNumber
             }
-            className="gap-1 px-0 underline underline-offset-1"
+            className="gap-1 px-0 underline underline-offset-2"
           >
             <ExternalLinkIcon />
             <span>view source</span>
           </Link>
         </Button>
         <Separator orientation="vertical" className="h-5" />
-        <p>{totalWinners.toLocaleString()} total winners</p>
+        <span>{totalWinners.toLocaleString()} total winners</span>
         <Separator orientation="vertical" className="h-5" />
-        <p>${totalPrize.toLocaleString()} total prize</p>
+        <span>${totalPrize.toLocaleString()} total prize</span>
       </CardFooter>
     </Card>
   );
