@@ -1,10 +1,11 @@
 export interface DrawResult {
-  drawDate: Date;
   drawNumber: number;
-  id: number;
+  drawDate: Date;
   winningNumbers: number[];
   additionalNumber: number;
   jackpot: number;
+  totalWinners: number;
+  totalPrize: number;
 }
 
 interface GroupDetail {
