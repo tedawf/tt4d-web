@@ -1,17 +1,17 @@
 import { SnowballInfo, WinningLocation, WinningShare } from "@/types/toto";
 import { GroupDetails } from "./GroupDetails";
 
-interface Props {
+interface LocationGroupProps {
   snowballInfo: SnowballInfo[];
   winningShares: WinningShare[];
   winningLocations: WinningLocation[];
 }
 
-export const LocationGroup = ({
+export function LocationGroup({
   snowballInfo,
   winningShares,
   winningLocations,
-}: Props) => {
+}: LocationGroupProps) {
   return (
     <section className="w-full space-y-4">
       <h3 className="text-xl">Winning Locations</h3>
@@ -37,4 +37,4 @@ export const LocationGroup = ({
       })}
     </section>
   );
-};
+}

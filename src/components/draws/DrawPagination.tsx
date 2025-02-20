@@ -13,7 +13,7 @@ import {
   PaginationLink,
 } from "../ui/pagination";
 
-interface Props {
+interface DrawPaginationProps {
   currentPage: number;
   totalPages: number;
   searchTerm?: string;
@@ -25,7 +25,7 @@ export function DrawPagination({
   totalPages,
   searchTerm,
   paginationItemsToDisplay = 5,
-}: Props) {
+}: DrawPaginationProps) {
   const createPageURL = (pageNumber: number) => {
     const params = new URLSearchParams();
     if (pageNumber > 1) params.set("page", pageNumber.toString());

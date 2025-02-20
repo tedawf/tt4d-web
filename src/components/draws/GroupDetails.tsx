@@ -1,17 +1,22 @@
 import { WinningLocation } from "@/types/toto";
 import { UsersIcon } from "lucide-react";
-import { LocationDetails } from "../LocationDetails";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
+import { LocationDetails } from "./LocationDetails";
 
-interface Props {
+interface GroupDetailsProps {
   group: number;
   amount: number;
   winners: number;
   locations?: WinningLocation[];
 }
 
-export const GroupDetails = ({ group, amount, winners, locations }: Props) => {
+export function GroupDetails({
+  group,
+  amount,
+  winners,
+  locations,
+}: GroupDetailsProps) {
   const haveLocations = locations && locations.length > 0;
   return (
     <Card className="w-full shadow-sm">
@@ -37,4 +42,4 @@ export const GroupDetails = ({ group, amount, winners, locations }: Props) => {
       </CardContent>
     </Card>
   );
-};
+}

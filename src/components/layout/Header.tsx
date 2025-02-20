@@ -1,6 +1,7 @@
 import { DicesIcon } from "lucide-react";
 import Link from "next/link";
-import { SearchForm } from "../draws/SearchForm";
+import { SearchNumbers } from "../draws/SearchNumbers";
+import { ThemeToggle } from "../ThemeToggle";
 import { Button } from "../ui/button";
 import {
   NavigationMenu,
@@ -10,7 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
 
-export const Header = () => {
+export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="flex h-16 items-center px-4">
@@ -23,7 +24,7 @@ export const Header = () => {
 
           {/* Search */}
           <div className="relative hidden md:flex">
-            <SearchForm initialValue="" showKbd />
+            <SearchNumbers showKbd />
           </div>
         </div>
 
@@ -50,11 +51,13 @@ export const Header = () => {
         <Button
           size="sm"
           variant="outline"
-          className="ml-2 rounded-full px-4 font-medium shadow-sm"
+          className="ml-2 mr-4 rounded-full px-4 font-medium shadow-sm"
         >
           Sign In
         </Button>
+
+        <ThemeToggle />
       </nav>
     </header>
   );
-};
+}

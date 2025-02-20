@@ -10,10 +10,6 @@ import {
 } from "../ui/card";
 import { Separator } from "../ui/separator";
 
-interface Props {
-  winningShares: WinningShare[];
-}
-
 interface PrizeStruct {
   prizeGroup: string;
   numbersMatched: string;
@@ -58,7 +54,11 @@ const PRIZE_STRUCTURE: PrizeStruct[] = [
   },
 ];
 
-export const PrizeGroup = ({ winningShares }: Props) => {
+interface PrizeGroupProps {
+  winningShares: WinningShare[];
+}
+
+export function PrizeGroup({ winningShares }: PrizeGroupProps) {
   return (
     <Card className="w-full border-none p-0 shadow-none">
       <CardHeader className="p-0">
@@ -118,4 +118,4 @@ export const PrizeGroup = ({ winningShares }: Props) => {
       </CardContent>
     </Card>
   );
-};
+}

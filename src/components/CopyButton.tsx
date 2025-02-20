@@ -11,12 +11,12 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-interface Props {
+interface CopyButtonProps {
   copyString?: string;
   url: boolean;
 }
 
-export const CopyButton = ({ copyString, url }: Props) => {
+export function CopyButton({ copyString, url }: CopyButtonProps) {
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = async () => {
@@ -65,10 +65,8 @@ export const CopyButton = ({ copyString, url }: Props) => {
             </div>
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="px-2 py-1 text-xs">
-          Click to copy URL
-        </TooltipContent>
+        <TooltipContent className="px-2 py-1 text-xs">Copy URL</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
-};
+}

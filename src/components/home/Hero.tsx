@@ -2,7 +2,7 @@ import { Repeat1Icon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-export const Hero = () => {
+export function Hero() {
   return (
     <section className="container px-4 py-12 md:px-6 md:py-24">
       <div className="flex flex-col items-center space-y-4 text-center">
@@ -27,4 +27,4 @@ export const Hero = () => {
       </div>
     </section>
   );
-};
+}

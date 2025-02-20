@@ -13,19 +13,19 @@ import { Button } from "../ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
 
-interface Props {
+interface DrawHeaderProps {
   drawNumber: number;
   drawDate: Date;
   totalWinners: number;
   totalPrize: number;
 }
 
-export const DrawHeader = ({
+export function DrawHeader({
   drawNumber,
   drawDate,
   totalWinners,
   totalPrize,
-}: Props) => {
+}: DrawHeaderProps) {
   const encodedDrawNumber = btoa(`DrawNumber=${drawNumber}`);
 
   return (
@@ -54,7 +54,7 @@ export const DrawHeader = ({
         </CardTitle>
       </CardHeader>
 
-      <CardFooter className="flex flex-col sm:flex-row items-center gap-2 p-0 text-sm text-muted-foreground">
+      <CardFooter className="flex flex-col items-center gap-2 p-0 text-sm text-muted-foreground sm:flex-row">
         <div className="flex gap-2">
           <span className="flex gap-1">
             Drawn
@@ -88,4 +88,4 @@ export const DrawHeader = ({
       </CardFooter>
     </Card>
   );
-};
+}

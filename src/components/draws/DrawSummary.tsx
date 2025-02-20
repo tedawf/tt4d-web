@@ -1,7 +1,6 @@
 import { DrawResult } from "@/types/toto";
 import { CalendarIcon, ExternalLinkIcon, MedalIcon } from "lucide-react";
 import Link from "next/link";
-import { LotteryNumber } from "./LotteryNumber";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
@@ -13,12 +12,13 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { LotteryNumber } from "./WinningNumbers";
 
-interface Props {
+interface DrawSummaryProps {
   drawResult: DrawResult;
 }
 
-export const DrawSummary = ({ drawResult }: Props) => {
+export function DrawSummary({ drawResult }: DrawSummaryProps) {
   const {
     drawDate,
     drawNumber,
@@ -74,7 +74,7 @@ export const DrawSummary = ({ drawResult }: Props) => {
         <Button
           variant="link"
           asChild
-          className="text-muted-foreground hover:text-primary px-0"
+          className="px-0 text-muted-foreground hover:text-primary"
         >
           <Link
             href={
@@ -94,4 +94,4 @@ export const DrawSummary = ({ drawResult }: Props) => {
       </CardFooter>
     </Card>
   );
-};
+}
