@@ -8,7 +8,9 @@ const RESULTS_PER_PAGE = 10;
 async function fetchDraws(skip = 0, limit = 0) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
   const response = await fetch(`${API_URL}/draws?skip=${skip}&limit=${limit}`, {
-    cache: "no-store",
+    next: {
+      revalidate: 10,
+    },
   });
 
   if (!response.ok) {
@@ -72,6 +74,7 @@ export default async function Page({ searchParams }: PageProps) {
         </section>
 
         <DrawList results={paginatedDraws} />
+
         {totalPages > 1 && (
           <DrawPagination
             currentPage={currentPage}

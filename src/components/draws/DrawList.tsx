@@ -30,7 +30,10 @@ export function DrawList({ results }: DrawListProps) {
   }
 
   return (
-    <section className="flex flex-col">
+    <section
+      key={results.length}
+      className="flex flex-col duration-200 animate-in fade-in"
+    >
       {results.map((result, index) => (
         <div key={result.drawNumber}>
           <DrawSummary drawResult={result} />

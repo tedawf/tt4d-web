@@ -31,7 +31,7 @@ export function SearchNumbers({
     }
 
     const newUrl = `/draws${params.toString() ? `?${params.toString()}` : ""}`;
-    router.push(newUrl);
+    router.replace(newUrl);
   }, 300);
 
   return (
