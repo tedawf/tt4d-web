@@ -1,9 +1,5 @@
-import { Hero } from "@/components/home/Hero";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Home() {
-  return (
-    <main className="flex flex-col items-center">
-      <Hero />
-    </main>
-  );
+  return <ModeToggle />;
 }
