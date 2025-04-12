@@ -1,24 +1,24 @@
-import { Home, ListOrdered, ChartNoAxesCombined } from "lucide-react";
+import { Separator } from "@radix-ui/react-separator";
+import { ChartNoAxesCombined, Home, ListOrdered, Repeat1 } from "lucide-react";
+import Link from "next/link";
+import { LogoSwitcher } from "./logo-switcher";
+import { SearchForm } from "./search-form";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { SearchForm } from "./search-form";
-import { LogoSwitcher } from "./logo-switcher";
-import { Separator } from "@radix-ui/react-separator";
-import Link from "next/link";
 
 const items = [
   { title: "Home", url: "/", icon: Home },
   { title: "Draws", url: "/draws", icon: ListOrdered },
   { title: "Stats", url: "/stats", icon: ChartNoAxesCombined },
+  { title: "Generate", url: "/generate", icon: Repeat1 },
 ];
 
 export function AppSidebar() {
