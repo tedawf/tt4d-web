@@ -1,16 +1,16 @@
-import { SnowballInfo, WinningLocation, WinningShare } from "@/types/toto";
+import { SnowballInfo, WinningTicket, WinningShare } from "@/types/toto";
 import { GroupDetails } from "./GroupDetails";
 
 interface LocationGroupProps {
   snowballInfo: SnowballInfo[];
   winningShares: WinningShare[];
-  winningLocations: WinningLocation[];
+  winningTickets: WinningTicket[];
 }
 
 export function LocationGroup({
   snowballInfo,
   winningShares,
-  winningLocations,
+  winningTickets,
 }: LocationGroupProps) {
   return (
     <section className="w-full space-y-4">
@@ -29,7 +29,7 @@ export function LocationGroup({
             group={index}
             amount={amount}
             winners={winningShares[index - 1].winnerCount}
-            locations={winningLocations.filter(
+            locations={winningTickets.filter(
               (loc) => loc.groupNumber === index,
             )}
           />

@@ -1,4 +1,4 @@
-import { WinningLocation } from "@/types/toto";
+import { WinningTicket } from "@/types/toto";
 import { UsersIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
@@ -8,7 +8,7 @@ interface GroupDetailsProps {
   group: number;
   amount: number;
   winners: number;
-  locations?: WinningLocation[];
+  locations?: WinningTicket[];
 }
 
 export function GroupDetails({

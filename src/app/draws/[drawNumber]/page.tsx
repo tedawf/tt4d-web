@@ -72,7 +72,7 @@ export default async function Page({ params }: PageProps) {
     },
     winningShares,
     snowballInfo,
-    winningLocations,
+    winningTickets,
   } = result;
 
   return (
@@ -95,11 +95,11 @@ export default async function Page({ params }: PageProps) {
 
       {winningShares.length > 0 && <PrizeGroup winningShares={winningShares} />}
 
-      {winningLocations.length > 0 && (
+      {winningTickets.length > 0 && (
         <LocationGroup
           snowballInfo={snowballInfo}
           winningShares={winningShares}
-          winningLocations={winningLocations}
+          winningTickets={winningTickets}
         />
       )}
     </main>

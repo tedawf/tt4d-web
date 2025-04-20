@@ -19,16 +19,24 @@ export interface SnowballInfo {
   amount: number;
 }
 
-export interface WinningLocation {
-  groupNumber: number;
+export interface ItotoLocation {
   outletName: string;
   address: string;
+  shareCount: number;
+}
+
+export interface WinningTicket {
+  groupNumber: number;
+  outletName:string;
+  address: string;
   entryType: string;
+  isItoto: boolean;
+  itotoLocations?: ItotoLocation[];
 }
 
 export interface DrawDetails {
   drawResult: DrawResult;
-  winningShares: GroupDetail[];
+  winningShares: WinningShare[];
   snowballInfo: SnowballInfo[];
-  winningLocations: WinningLocation[];
+  winningTickets: WinningTicket[];
 }
