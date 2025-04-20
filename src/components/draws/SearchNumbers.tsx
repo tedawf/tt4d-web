@@ -25,9 +25,14 @@ export function SearchNumbers({
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams();
 
-    if (term.trim()) {
-      params.set("page", "1");
-      params.set("search", term.trim());
+    if (term) {
+      // Normalize input by replacing commas with spaces and trim excess whitespace
+      const normalizedTerm = term.replace(/,/g, ' ').trim();
+      
+      if (normalizedTerm) {
+        params.set("page", "1");
+        params.set("search", normalizedTerm);
+      }
     }
 
     const newUrl = `/draws${params.toString() ? `?${params.toString()}` : ""}`;
@@ -40,7 +45,7 @@ export function SearchNumbers({
         <SearchIcon className="h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Filter results (e.g. winning numbers)"
+          placeholder="Search Numbers"
           value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
