@@ -10,6 +10,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
+import { LotteryNumberGenerator } from "../LotteryNumberGenerator";
 
 export function Header() {
   return (
@@ -31,17 +32,19 @@ export function Header() {
         {/* Navigation */}
         <NavigationMenu className="ml-auto">
           <NavigationMenuList>
+            <NavigationMenuItem className="cursor-pointer">
+              <LotteryNumberGenerator
+                triggerButton={
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Generate
+                  </NavigationMenuLink>
+                }
+              />
+            </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/draws" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Results
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/stats" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Statistics
+                  Draws
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -51,6 +54,7 @@ export function Header() {
         <Button
           size="sm"
           variant="outline"
+          disabled
           className="ml-2 mr-4 rounded-full px-4 font-medium shadow-sm"
         >
           Sign In
