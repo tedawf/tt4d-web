@@ -2,7 +2,6 @@ import { DicesIcon } from "lucide-react";
 import Link from "next/link";
 import { SearchNumbers } from "../draws/SearchNumbers";
 import { ThemeToggle } from "../ThemeToggle";
-import { Button } from "../ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -30,7 +29,7 @@ export function Header() {
         </div>
 
         {/* Navigation */}
-        <NavigationMenu className="ml-auto">
+        <NavigationMenu className="ml-auto mr-4">
           <NavigationMenuList>
             <NavigationMenuItem className="cursor-pointer">
               <LotteryNumberGenerator
@@ -51,14 +50,14 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <Button
+        {/* <Button
           size="sm"
           variant="outline"
           disabled
           className="ml-2 mr-4 rounded-full px-4 font-medium shadow-sm"
         >
           Sign In
-        </Button>
+        </Button> */}
 
         <ThemeToggle />
       </nav>

@@ -24,7 +24,7 @@ export function Hero() {
             }
           />
 
-          <Button variant="outline" size="lg">
+          <Button variant="outline" asChild size="lg">
             <Link href="/draws">View Past Draws</Link>
           </Button>
         </div>
