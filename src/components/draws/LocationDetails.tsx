@@ -21,7 +21,7 @@ function LocationItem({
         <Badge variant="secondary">{entryType}</Badge>
       </div>
 
-      {itotoLocations && itotoLocations.length > 0 ? (
+      {isItoto && itotoLocations && itotoLocations.length > 0 ? (
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="itoto-locations" className="border-b-0">
             <AccordionTrigger className="py-1 text-sm hover:no-underline">

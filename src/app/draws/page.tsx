@@ -36,10 +36,10 @@ function filterDraws(draws: DrawResult[], searchTerm: string) {
 }
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     search?: string;
     page?: string;
-  };
+  }>
 }
 
 export default async function Page({ searchParams }: PageProps) {

@@ -48,9 +48,9 @@ function SnowballAlerts({ snowballInfo }: SnowballAlertsProps) {
 
 interface PageProps {
   // must be params, special nextjs props
-  params: {
+  params: Promise<{
     drawNumber: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: PageProps) {
