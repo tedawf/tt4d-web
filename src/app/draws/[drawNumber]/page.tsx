@@ -69,6 +69,7 @@ export default async function Page({ params }: PageProps) {
       additionalNumber,
       totalWinners,
       totalPrize,
+      jackpot,
     },
     winningShares,
     snowballInfo,
@@ -101,6 +102,12 @@ export default async function Page({ params }: PageProps) {
           winningShares={winningShares}
           winningTickets={winningTickets}
         />
+      )}
+
+      {!jackpot && (
+        <Alert variant="destructive">
+          Only partial results available. Please check again later.
+        </Alert>
       )}
     </main>
   );

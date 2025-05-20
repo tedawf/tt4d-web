@@ -1,5 +1,10 @@
 import { DrawResult } from "@/types/toto";
-import { CalendarIcon, ExternalLinkIcon, MedalIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  CheckIcon,
+  ExternalLinkIcon,
+  MedalIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -27,6 +32,7 @@ export function DrawSummary({ drawResult }: DrawSummaryProps) {
     jackpot,
     totalWinners,
     totalPrize,
+    isComplete,
   } = drawResult;
 
   const encodedDrawNumber = btoa(`DrawNumber=${drawNumber}`);
@@ -35,7 +41,7 @@ export function DrawSummary({ drawResult }: DrawSummaryProps) {
     <Card className="group border-none shadow-none">
       <Link href={`/draws/${drawNumber}`}>
         <CardHeader className="relative px-0">
-          <div className="flex flex-row items-baseline gap-4">
+          <div className="flex flex-row items-center gap-4">
             <CardTitle className="font-medium group-hover:underline">
               Draw No. {drawNumber}
             </CardTitle>
@@ -45,16 +51,42 @@ export function DrawSummary({ drawResult }: DrawSummaryProps) {
                 {new Date(drawDate).toLocaleDateString()}
               </time>
             </CardDescription>
+            {isComplete ? (
+              <Badge variant="outline" className="gap-1">
+                <CheckIcon
+                  className="text-emerald-500"
+                  size={12}
+                  aria-hidden="true"
+                />
+                Complete
+              </Badge>
+            ) : (
+              <Badge variant="outline" className="gap-1.5">
+                <span
+                  className="size-1.5 rounded-full bg-red-500"
+                  aria-hidden="true"
+                ></span>
+                Partial
+              </Badge>
+            )}
           </div>
 
           <div className="absolute right-0 top-0 flex flex-col items-end gap-1 pt-4">
-            <span className="text-xl font-medium">
-              ${jackpot.toLocaleString()}
-            </span>
-            <Badge variant="secondary" className="flex items-center gap-1 py-1">
-              <MedalIcon size={16} />
-              <span>jackpot</span>
-            </Badge>
+            {/* Jackpot amount and badge */}
+            {jackpot && (
+              <>
+                <span className="text-xl font-medium">
+                  ${jackpot.toLocaleString()}
+                </span>
+                <Badge
+                  variant="secondary"
+                  className="flex items-center gap-1 py-1"
+                >
+                  <MedalIcon size={16} />
+                  <span>jackpot</span>
+                </Badge>
+              </>
+            )}
           </div>
         </CardHeader>
 
@@ -87,10 +119,18 @@ export function DrawSummary({ drawResult }: DrawSummaryProps) {
             <span>view source</span>
           </Link>
         </Button>
-        <Separator orientation="vertical" className="h-5" />
-        <span>{totalWinners.toLocaleString()} total winners</span>
-        <Separator orientation="vertical" className="h-5" />
-        <span>${totalPrize.toLocaleString()} total prize</span>
+        {totalWinners > 0 && (
+          <>
+            <Separator orientation="vertical" className="h-5" />
+            <span>{totalWinners.toLocaleString()} total winners</span>
+          </>
+        )}
+        {totalPrize > 0 && (
+          <>
+            <Separator orientation="vertical" className="h-5" />
+            <span>${totalPrize.toLocaleString()} total prize</span>
+          </>
+        )}
       </CardFooter>
     </Card>
   );

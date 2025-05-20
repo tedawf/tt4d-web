@@ -9,7 +9,8 @@ async function fetchDraws(skip = 0, limit = 0) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
   const response = await fetch(`${API_URL}/draws?skip=${skip}&limit=${limit}`, {
     next: {
-      revalidate: 10,
+      revalidate: 60, // 60 seconds
+      tags: ["refresh-draws"],
     },
   });
 
@@ -39,7 +40,7 @@ interface PageProps {
   searchParams: Promise<{
     search?: string;
     page?: string;
-  }>
+  }>;
 }
 
 export default async function Page({ searchParams }: PageProps) {

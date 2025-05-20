@@ -3,9 +3,10 @@ export interface DrawResult {
   drawDate: Date;
   winningNumbers: number[];
   additionalNumber: number;
-  jackpot: number;
+  jackpot?: number;
   totalWinners: number;
   totalPrize: number;
+  isComplete:boolean;
 }
 
 export interface WinningShare {
